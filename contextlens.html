@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ContextFlow Generator</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+</head>
+<body class="bg-gray-900 text-white">
+  <h1 class="text-3xl p-4">ContextFlow Generator</h1>
+  <input id="goal" class="m-2 p-2 bg-gray-800 rounded" placeholder="Enter goal (e.g., Build NFT)">
+  <button class="m-2 p-2 bg-blue-600 rounded" onclick="generateFlow()">Generate</button>
+  <pre id="workflow" class="m-2 text-sm"></pre>
+  <a class="m-2 p-2 bg-green-600 rounded" href="https://gumroad.com/l/contextflow">Buy: $49</a>
+  <script>
+    function generateFlow() {
+      const goal = document.getElementById('goal').value;
+      const flow = { steps: [{ step: 'Ideate', context: 'Domain Expertise' }, { step: 'Execute', context: 'Tool Use' }] };
+      localStorage.setItem('workflow', JSON.stringify(flow));
+      document.getElementById('workflow').textContent = JSON.stringify(flow, null, 2);
+      gsap.from('#workflow', { opacity: 0, duration: 1 });
+    }
+    gsap.from('button', { opacity: 0, y: 20, duration: 1, ease: 'power2.out' });
+  </script>
+</body>
+</html>
